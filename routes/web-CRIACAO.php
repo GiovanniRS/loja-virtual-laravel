@@ -28,19 +28,23 @@ Route::group([
         return redirect()->route('panel');
     });
 
-    Route::get('/painel', function() {
+    Route::get('/panel', function() {
         return view('admin\home');
     })->name('panel');
 
-    Route::resource('categorias', 'CategoryController')->names('categories')->parameters(['categorias' => 'categories']);
+    Route::resource('category', 'CategoryController');
 
-    // Route::resource('subcategorias', 'SubcategoryController')->names('subcategories')->parameters(['subcategorias' => 'subcategories']);
+    Route::resource('subcategory', 'SubcategoryController');
 
-    Route::resource('produtos', 'ProductController')->names('products')->parameters(['produtos' => 'products']);
+    Route::resource('product', 'ProductController');
     
-    // Route::resource('clientes', 'ClientController')->names('clients')->parameters(['clientes' => 'clients']);
+    Route::resource('client', 'ClientsController');
 
-    // Route::resource('usuarios', 'UserController')->names('users')->parameters(['usuarios' => 'users']);
+    Route::resource('user', 'UserController');
 });
+
+// Route::get('/{category}', function ($category) {
+//     dd($category);
+// })->name('category');
 
 Auth::routes();

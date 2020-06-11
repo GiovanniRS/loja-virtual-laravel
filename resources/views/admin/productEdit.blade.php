@@ -10,4 +10,9 @@
         @method('PUT')
         @include('admin\includes\formProduct')
     </form>
+    <div class="row">
+        @foreach ($product->productImage as $image)
+            @include('admin\includes\formDeleteImage')
+        @endforeach
+    </div>
 @endsection

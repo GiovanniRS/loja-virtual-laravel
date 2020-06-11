@@ -19,8 +19,5 @@
 <div class="form-group">
     <label for="images">Preço do produto</label>
     <input type="file" class="form-control" id="images" name="images[]" multiple>
-    @foreach ($product->productImage as $image)
-        <img src="/storage/{{ $image->image }}" alt="{{ $product->name }}" class="img-fluid">
-    @endforeach
 </div>
 <button type="submit" class="btn btn-success">Salvar</button>

@@ -28,7 +28,7 @@ Route::group([
         return redirect()->route('panel');
     });
 
-    Route::get('/painel', function() {
+    Route::get('painel', function() {
         return view('admin\home');
     })->name('panel');
 
@@ -37,6 +37,8 @@ Route::group([
     // Route::resource('subcategorias', 'SubcategoryController')->names('subcategories')->parameters(['subcategorias' => 'subcategories']);
 
     Route::resource('produtos', 'ProductController')->names('products')->parameters(['produtos' => 'products']);
+
+    Route::delete('produtos/images/{id}', 'ProductController@destroyImage')->name('products.destroyImage');
     
     // Route::resource('clientes', 'ClientController')->names('clients')->parameters(['clientes' => 'clients']);
 

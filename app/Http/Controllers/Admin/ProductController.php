@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -51,14 +52,16 @@ class ProductController extends Controller
     {
         $product = $this->repository->create($request->all());
 
-        for ($i=0; $i < count($request->allFiles()['images']); $i++) {
-            $file = $request->allFiles()['images'][$i];
-            $productImage = new ProductImage();
-            $productImage->user_id = $request->input('user_id');
-            $productImage->product_id = $product->id;
-            $productImage->image = $file->store('produtos/' . $product->id);
-            $productImage->save();
-            unset($productImage);
+        if (isset($request->allFiles()['images'])) {
+            for ($i=0; $i < count($request->allFiles()['images']); $i++) {
+                $file = $request->allFiles()['images'][$i];
+                $productImage = new ProductImage();
+                $productImage->user_id = $request->input('user_id');
+                $productImage->product_id = $product->id;
+                $productImage->image = $file->store('produtos/' . $product->id);
+                $productImage->save();
+                unset($productImage);
+            }
         }
 
         return redirect()->route('products.index');
@@ -72,7 +75,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        if (!$product = $this->repository->find($id))
+            return redirect()->back();
+
+        return view('admin\productShow', [
+            'product' => $product
+        ]);
     }
 
     /**
@@ -105,7 +113,19 @@ class ProductController extends Controller
 
         $product->update($request->all());
 
-        return redirect()->route('product.index');
+        if (isset($request->allFiles()['images'])) {
+            for ($i=0; $i < count($request->allFiles()['images']); $i++) {
+                $file = $request->allFiles()['images'][$i];
+                $productImage = new ProductImage();
+                $productImage->user_id = $request->input('user_id');
+                $productImage->product_id = $product->id;
+                $productImage->image = $file->store('produtos/' . $product->id);
+                $productImage->save();
+                unset($productImage);
+            }
+        }
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -119,8 +139,25 @@ class ProductController extends Controller
         if (!$product = $this->repository->find($id))
             return redirect()->back();
 
+        foreach ($product->productImage as $image) {
+            if($image->delete())
+                Storage::delete($image->image);
+        }
+
         $product->delete();
 
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
+    }
+
+    public function destroyImage($id)
+    {
+        $productImage = new ProductImage();
+        if (!$image = $productImage->find($id))
+            return redirect()->back();
+
+        if($image->delete())
+            dd(Storage::delete($image->image));
+
+        return redirect()->back();
     }
 }

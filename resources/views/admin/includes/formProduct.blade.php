@@ -17,7 +17,7 @@
     <input type="text" class="form-control" id="price" name="price" value="{{ $product->price ?? old('price') ?? '' }}">
 </div>
 <div class="form-group">
-    <label for="images">Preço do produto</label>
-    <input type="file" class="form-control" id="images" name="images[]" multiple>
+    <label for="images">Imagens do produto</label>
+    <input type="file" class="form-control-file" id="images" name="images[]" multiple>
 </div>
 <button type="submit" class="btn btn-success">Salvar</button>

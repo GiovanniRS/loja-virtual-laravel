@@ -4,6 +4,7 @@
 
 @section('content')
     <a class="btn btn-primary" href="{{ route('products.create') }}">Cadastrar</a>
+    
     <div class="table-responsive my-3">
         <table class="table table-striped">
             <thead>

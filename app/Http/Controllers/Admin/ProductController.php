@@ -151,13 +151,21 @@ class ProductController extends Controller
 
     public function destroyImage($id)
     {
+        
         $productImage = new ProductImage();
-        if (!$image = $productImage->find($id))
-            return redirect()->back();
+        if (!$image = $productImage->find($id)) {
+            $return['success'] = false;
+            $return['message'] = 'Ocorreu um erro, tente novamente mais tarde!';
+            echo json_encode($return);
+            return;
+        }
 
         if($image->delete())
-            dd(Storage::delete($image->image));
+            Storage::delete($image->image);
 
-        return redirect()->back();
+        $return['success'] = true;
+        $return['message'] = 'Imagem deletada com sucesso!';
+        echo json_encode($return);
+        return;
     }
 }

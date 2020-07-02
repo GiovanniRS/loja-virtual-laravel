@@ -42,7 +42,7 @@ Route::group([
     
     // Route::resource('clientes', 'ClientController')->names('clients')->parameters(['clientes' => 'clients']);
 
-    // Route::resource('usuarios', 'UserController')->names('users')->parameters(['usuarios' => 'users']);
+    Route::resource('usuarios', 'UserController')->names('users')->parameters(['usuarios' => 'users']);
 });
 
 Auth::routes();

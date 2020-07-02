@@ -50,13 +50,13 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                 Clientes
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link {{ (explode('.', Route::currentRouteName())[0] === 'users' ? 'active' : '') }}" href="{{ route('users.index') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                 Usuários
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -73,5 +73,5 @@
 
     <script src="{{ url(mix('assets/admin/js/jquery.js')) }}"></script>
     <script src="{{ url(mix('assets/admin/js/bootstrap.js')) }}"></script>
-</body>
+    <script src="{{ url(mix('assets/admin/js/script.js')) }}"></script>
 </html>

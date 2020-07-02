@@ -11,6 +11,8 @@
         @include('admin\includes\formProduct')
     </form>
     <div class="row">
+        <div class="alert col-12 alertProductImage d-none">
+        </div>
         @foreach ($product->productImage as $image)
             @include('admin\includes\formDeleteImage')
         @endforeach

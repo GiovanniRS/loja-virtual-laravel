@@ -15,4 +15,5 @@ mix.sass('resources/views/admin/scss/style.scss', 'public/assets/admin/css/boots
 .styles('resources/views/admin/css/style.css', 'public/assets/admin/css/style.css')
 .scripts('node_modules/jquery/dist/jquery.js', 'public/assets/admin/js/jquery.js')
 .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/assets/admin/js/bootstrap.js')
+.scripts('resources/views/admin/js/script.js', 'public/assets/admin/js/script.js')
 .version();
